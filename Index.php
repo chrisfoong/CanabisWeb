@@ -8,29 +8,21 @@
 </head>
     <body>
         <div class="banner">
-            <nav>
-            <div class="navbar">
-                <img src="img/weedlogoreal.png" class="logo">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="Location.html">Location</a></li>
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">HELP</a></li>
-                    <img src="img/American-removebg-preview.png" class="lang">    
-            </div>
-            </nav>
+    <?php 
+        require_once("components/navbar.php"); 
+    ?>
                 
         <div class="content">
             <h1>BEST CANABIS IN THAILAND</h1>
             <p>Welcome to our premium online dispensary, where we take pride in offering the finest selection of high-quality cannabis products available.<br>We are dedicated to providing a seamless and enjoyable experience for both seasoned connoisseurs and newcomers to the world of cannabis.</p>
             <div>
                 
-                <button type="button"><span></span><a href="Browse.html">BROWSE</a></button>
-                <button type="button"><span></span>MERCHS</button>
+                <button class="b" type="button"><span></span><a href="./Browse.php">BROWSE</a></button>
+                <button class="b" type="button"><span></span>MERCHS</button>
                 </ul>
             </div>
             </div>
             
         </div> 
+        </div>
     </body>

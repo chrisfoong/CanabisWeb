@@ -1,5 +1,0 @@
-<?php
-    $name = "";
-    echo $name
-
-<?

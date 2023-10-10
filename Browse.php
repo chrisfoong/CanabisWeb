@@ -1,10 +1,3 @@
-<?php 
-    require_once('componets/navbar.php');
-<?
-
-
-
-
 <html>
 
 <head>
@@ -16,8 +9,9 @@
 </head>
 
 <body>
+    <div class ="banner">
     <?php 
-        require_once("components/navbar.php"); 
+        require_once("./components/navbar.php");
     ?>
 
         <section class="products">
@@ -61,6 +55,7 @@
 
             </div>
         </section>
+    </div>
     </div>
     </div>
 </body>
