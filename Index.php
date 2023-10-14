@@ -1,3 +1,4 @@
+<!doctype html>
 <html>
 
 <head>
@@ -19,8 +20,8 @@
       <p>Welcome to our premium online dispensary, where we take pride in offering the finest selection of high-quality
         cannabis products available.<br>We are dedicated to providing a seamless and enjoyable experience for both
         seasoned connoisseurs and newcomers to the world of cannabis.</p>
-      <div>
 
+      <div class="button-list">
         <button type="button"><span></span><a href="./Browse.php">BROWSE</a></button>
         <button type="button"><span></span>MERCHS</button>
         </ul>
@@ -29,4 +30,9 @@
 
   </div>
   </div>
-</body>
+  <?php
+  $alert = isset($_GET['alert']) ? $_GET['alert'] : '';
+  if ($alert != "")
+    echo "<script>alert(\"$alert\")</script>"
+      ?>
+  </body>

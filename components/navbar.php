@@ -27,6 +27,19 @@ session_start();
         <li><a href="./Index.php">
             <?php echo $_SESSION['user_name']; ?>
           </a></li>
+        <li class="cart">
+          <a href="./Cart.php">
+            <?php
+            if (isset($_SESSION['cart'])) {
+              $item_in_cart_count = count($_SESSION['cart']);
+              echo "$item_in_cart_count";
+            } else {
+              echo "0";
+            }
+            ?>
+            <img class="cart-icon" src="./img/cart.png" />
+          </a>
+        </li>
         <form action="LogOut.php" method="POST">
           <button class="logout" type="submit" name="logout">Log out</button>
         </form>

@@ -1,3 +1,9 @@
+<?php
+require_once('./components/product.php');
+require_once('./utils/db_conn.php');
+?>
+
+<!doctype html>
 <html>
 
 <head>
@@ -17,45 +23,22 @@
     <section class="products">
       <h1>Our Products</h1>
       <div class="all-products">
-        <div class="product">
-          <br><img src="img/aaa.jpg">
-          <div class="product-info">
-            <h4 class="product-title">100g Weed
-            </h4>
-            <p class="product-price"></p>750฿
-            <br><a class="product-btn" href="#">Buy now!</a>
-
-
-          </div>
-        </div>
-
-        <div class="product">
-          <br><img src="img/aaa.jpg">
-          <div class="product-info">
-            <h4 class="product-title">plant for growing
-            </h4>
-            <p class="product-price"></p>1000฿
-            <br><a class="product-btn" href="#">Buy now!</a>
-
-
-          </div>
-        </div>
-
-        <div class="product">
-          <br><img src="img/aaa.jpg">
-          <div class="product-info">
-            <h4 class="product-title">Lighter
-            </h4>
-            <p class="product-price"></p>10,000฿
-            <br><a class="product-btn" href="#">Buy now!</a>
-
-
-          </div>
-        </div>
-
+        <?php
+        $result = getData($conn, "producttb");
+        while ($row = mysqli_fetch_assoc($result)) {
+          product_card($row['id'], $row['product_name'], $row['product_price'], $row['product_image']);
+        }
+        ?>
       </div>
     </section>
   </div>
   </div>
   </div>
-</body>
+  <?php
+  $alert = isset($_GET['alert']) ? $_GET['alert'] : '';
+  if ($alert != "")
+    echo "<script>alert(\"$alert\")</script>"
+      ?>
+  </body>
+
+  </html>

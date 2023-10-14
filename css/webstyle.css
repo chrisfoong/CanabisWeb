@@ -39,6 +39,11 @@
   position: relative;
 }
 
+.navbar li.cart img {
+  width: 17px;
+  height: 17px;
+}
+
 .navbar ul li a,
 .navbar ul button.logout {
   font-size: inherit;
@@ -53,18 +58,20 @@
   margin: 0;
 }
 
-.navbar ul li::after {
+.navbar ul li::after,
+.navbar ul button.logout::after {
   content: "";
   height: 3px;
   width: 0;
   background: #19df0f;
   position: absolute;
   left: 0;
-  bottom: -10;
+  bottom: 0;
   transition: 0.5s;
 }
 
-.navbar ul li:hover::after {
+.navbar ul li:hover::after,
+.navbar ul button.logout:hover::after {
   width: 100%;
 }
 
@@ -89,25 +96,32 @@
 }
 
 button {
-  width: 200px;
   padding: 15px 0;
   text-align: center;
-  margin: 20px 10px;
   border-radius: 25px;
+}
+button:hover {
+  cursor: pointer;
+}
+
+div.button-list button {
+  width: 200px;
+
+  margin: 20px 10px;
   border: 2px solid #19df0f;
   background: transparent;
-  cursor: pointer;
   position: relative;
   overflow: hidden;
 }
 
-button, button a {
+div.button-list button,
+div.button-list button a {
   font-weight: bold;
   color: #fff;
   text-decoration: none;
 }
 
-span {
+div.button-list button span {
   background: #19df0f;
   height: 100%;
   width: 0;
@@ -119,10 +133,10 @@ span {
   transition: 0.5s;
 }
 
-button:hover span {
+div.button-list button:hover span {
   width: 100%;
 }
 
-button:hover {
+div.button-list button:hover {
   border: none;
 }

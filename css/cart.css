@@ -1,0 +1,157 @@
+.container {
+  width: 95%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(600px, auto) 380px;
+  gap: 20px;
+}
+
+form.information,
+div.summary {
+  background-color: white;
+  padding: 16px;
+  width: 100%;
+  max-width: 80vw;
+  box-sizing: border-box;
+  border-radius: 16px;
+  height: fit-content;
+}
+
+div.summary h3 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+div.summary h3.empty {
+  margin: 32px auto;
+  opacity: 50%;
+  width:fit-content
+}
+form.information h1 {
+  margin-bottom: 32px;
+  size: 2rem;
+}
+
+form.information div {
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+form.information input,
+form.information textarea {
+  padding: 8px;
+  font-size: 20px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+  resize: vertical;
+  appearance: none;
+  border-color: #aaa;
+  border-width: 1px;
+}
+
+form.information button {
+  border: none;
+  margin-top: 8px;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  width: 100%;
+  margin: 0;
+  background: #19df0f;
+}
+
+form.information button:hover {
+  margin-top: 8px;
+  color: black;
+  width: 100%;
+  margin: 0;
+  background: #19df0f;
+}
+
+.item-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.item-property {
+  display: flex;
+  line-height: 24px;
+  gap: 8px;
+}
+.item-property p.title {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: auto;
+}
+
+.item-card,
+form.quantity {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+form.quantity {
+  width: fit-content;
+  height: 24px;
+  gap: 4px;
+}
+form.quantity p.quantity {
+  height: fit-content;
+}
+form.quantity .quantity-button {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+form.quantity .quantity-button button {
+  padding: 0;
+  border: none;
+  background: none;
+  height: 50%;
+}
+form.quantity .quantity-button button img {
+  width: auto;
+  height: 100%;
+}
+form.quantity .quantity-button button.increase img {
+  rotate: 180deg;
+}
+
+.item-card .item-property img.product {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+form.remove button {
+  padding: 0;
+  border: none;
+  background: none;
+  margin-right: 12px;
+}
+form.remove button img {
+  width: 16px;
+}
+
+div.total {
+  margin-top: 16px;
+  padding-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: #eee 1px solid;
+}
+
+div.total h3 {
+  margin: 0;
+}
+
+div.total p {
+  font-weight: bold;
+}

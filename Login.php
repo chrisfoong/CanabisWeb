@@ -15,17 +15,17 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 	$pass = validate($_POST['password']);
 
 	if (empty($uname)) {
-		header("Location: Index.php?error=User Name is required");
+		header("Location: LoginPage.php?error=User Name is required");
 	    exit();
 	}else if(empty($pass)){
-        header("Location: Index.php?error=Password is required");
+        header("Location: LoginPage.php?error=Password is required");
 	    exit();
 	}else{
 		// hashing the password
         $pass = md5($pass);
 
         
-		$sql = "SELECT * FROM users WHERE user_name='$uname' AND password='$pass'";
+		$sql = "SELECT * FROM $usertb WHERE user_name='$uname' AND password='$pass'";
 
 		$result = mysqli_query($conn, $sql);
 
@@ -35,14 +35,14 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
             	$_SESSION['user_name'] = $row['user_name'];
             	$_SESSION['name'] = $row['name'];
             	$_SESSION['id'] = $row['id'];
-            	header("Location: Index.php");
+            	header("Location: Browse.php");
 		        exit();
             }else{
-				header("Location: Index.php?error=Incorect User name or password");
+				header("Location: LoginPage.php?error=Incorect User name or password");
 		        exit();
 			}
 		}else{
-			header("Location: Index.php?error=Incorect User name or password");
+			header("Location: LoginPage.php?error=Incorect User name or password");
 	        exit();
 		}
 	}
