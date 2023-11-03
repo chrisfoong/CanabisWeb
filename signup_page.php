@@ -38,7 +38,7 @@
     <input type="password" name="passwordagain" placeholder="Password Again"><br>
 
     <button type="submit">Sign Up</button>
-    <a href="Index.php" class="ca">Back to HOMEPAGE</a>
+    <a href="index.php" class="ca">Back to HOMEPAGE</a>
   </form>
 </body>
 

@@ -27,7 +27,7 @@
     <input type="password" name="password" placeholder="Password"><br>
 
     <button type="submit">Login</button>
-    <a href="SignUp.php" class="ca">Create an account</a>
+    <a href="signup_page.php" class="ca">Create an account</a>
   </form>
 </body>
 

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('./components/product.php');
 require_once('./utils/db_conn.php');
 ?>
