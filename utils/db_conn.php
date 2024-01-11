@@ -116,7 +116,7 @@ function addOrder($conn, $producttb, $ordertb, $user_id, $product_id, $product_a
     $email->setSubject("Customer's Orders");
     $email->addTo("chrisfoong010@gmail.com");
     $email->addContent("text/plain", "$name ('ID'$user_id) just ordered product '$product_name'\nAmount: $product_amount\n Address: $user_address");
-    $sendgrid = new \SendGrid('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');
+    $sendgrid = new \SendGrid('API_KEY');
 
     try {
       $response = $sendgrid->send($email);
