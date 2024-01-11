@@ -1,11 +1,11 @@
 <html>
 
 <head>
-  <title>KenshoCanabis</title>
+  <title>KenshoCannabis</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>KenshoCanabis</title>
-  <link rel="stylesheet" href="css/webstyleregisteration.css">
+  <title>KenshoCannabis</title>
+  <link rel="stylesheet" type="text/css" href="./css/webstyleregisteration.css?<?php echo time(); ?>" />
 </head>
 
 <body>

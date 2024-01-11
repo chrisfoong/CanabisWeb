@@ -1,10 +1,10 @@
 <?php
-
+require 'vendor/autoload.php';
 $sname = "localhost";
 $uname = "root";
 $password = "";
 
-$db_name = "canabis";
+$db_name = "id21408595_kenshocanabis";
 
 $usertb = "usertb";
 $producttb = "producttb";
@@ -95,12 +95,13 @@ function getData($conn, $tablename)
   }
 }
 
-function addOrder($conn, $producttb, $ordertb, $user_id, $product_id, $product_amount, $user_address, $card_num, $card_ex, $card_ccv)
+function addOrder($conn, $producttb, $ordertb, $user_id, $product_id, $product_amount, $user_address, $card_num, $card_ex, $card_ccv, $name)
 {
-  $get_price_sql = "SELECT product_price FROM $producttb WHERE id = '$product_id'";
+  $get_price_sql = "SELECT product_price, product_name FROM $producttb WHERE id = '$product_id'";
   $result = mysqli_query($conn, $get_price_sql);
   $row = mysqli_fetch_assoc($result);
   $product_price = $row['product_price'];
+  $product_name = $row['product_name'];
 
   //Payment process mock
   if ($card_num == null && $card_ex == null && $card_ccv == null) {
@@ -110,6 +111,21 @@ function addOrder($conn, $producttb, $ordertb, $user_id, $product_id, $product_a
   $add_order_sql = "INSERT INTO $ordertb (user_id, product_id, product_price, product_amount, shipping_address) VALUES ('$user_id', '$product_id', '$product_price', '$product_amount', '$user_address')";
 
   if (mysqli_query($conn, $add_order_sql)) {
+    $email = new \SendGrid\Mail\Mail();
+    $email->setFrom("keshocanabis@gmail.com");
+    $email->setSubject("Customer's Orders");
+    $email->addTo("chrisfoong010@gmail.com");
+    $email->addContent("text/plain", "$name ('ID'$user_id) just ordered product '$product_name'\nAmount: $product_amount\n Address: $user_address");
+    $sendgrid = new \SendGrid('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');
+
+    try {
+      $response = $sendgrid->send($email);
+      print $response->statusCode() . "\n";
+      print_r($response->headers());
+      print $response->body() . "\n";
+    } catch (Exception $e) {
+        echo 'Caught exception: '. $e->getMessage() ."\n"; 
+      }
     return true;
   } else {
     return false;

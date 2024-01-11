@@ -10,7 +10,7 @@ require_once('./utils/db_conn.php');
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>KenshoCanabis</title>
+  <title>KenshoCannabis</title>
   <link rel="stylesheet" type="text/css" href="./css/webstyle.css?<?php echo time(); ?>" />
   <link rel="stylesheet" type="text/css" href="./css/webstylertwo.css?<?php echo time(); ?>" />
 </head>

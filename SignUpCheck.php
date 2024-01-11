@@ -22,24 +22,24 @@ if (isset($_POST['uname']) && isset($_POST['password'])
 
 
 	if (empty($uname)) {
-		header("Location: signup_page.php?error=User Name is required.&$user_data");
+		header("Location: signupPage.php?error=User Name is required.&$user_data");
 	    exit();
 	}else if(empty($pass)){
-        header("Location: signup_page.php?error=Password is required.&$user_data");
+        header("Location: signupPage.php?error=Password is required.&$user_data");
 	    exit();
 	}
 	else if(empty($re_pass)){
-        header("Location: signup_page.php?error=Re Password is required.&$user_data");
+        header("Location: signupPage.php?error=Re Password is required.&$user_data");
 	    exit();
 	}
 
 	else if(empty($name)){
-        header("Location: signup_page.php?error=Name is required.&$user_data");
+        header("Location: signupPage.php?error=Name is required.&$user_data");
 	    exit();
 	}
 
 	else if($pass !== $re_pass){
-        header("Location: signup_page.php?error=The confirmation password  does not match.&$user_data");
+        header("Location: signupPage.php?error=The confirmation password  does not match.&$user_data");
 	    exit();
 	}
 
@@ -52,7 +52,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])
 		$result = mysqli_query($conn, $sql);
 
 		if (mysqli_num_rows($result) > 0) {
-			header("Location: signup_page.php?error=The username is already taken.&$user_data");
+			header("Location: signupPage.php?error=The username is already taken.&$user_data");
 	        exit();
 		}else {
            $sql2 = "INSERT INTO $usertb(user_name, password, name) VALUES('$uname', '$pass', '$name')";
@@ -61,13 +61,13 @@ if (isset($_POST['uname']) && isset($_POST['password'])
            	 header("Location: LoginPage.php?success=Your account has been created successfully.");
 	         exit();
            }else {
-	           	header("Location: signup_page.php?error=unknown error occurred.&$user_data");
+	           	header("Location: signupPage.php?error=unknown error occurred.&$user_data");
 		        exit();
            }
 		}
 	}
 	
 }else{
-	header("Location: signup_page.php");
+	header("Location: signupPage.php");
 	exit();
 }

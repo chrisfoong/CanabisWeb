@@ -140,3 +140,16 @@ div.button-list button:hover span {
 div.button-list button:hover {
   border: none;
 }
+
+footer {
+  background: #3f3f3f;
+  align-items: block;
+  text-align: center;
+}
+footer h1{
+  color: #fff;
+}
+footer p{
+  position: center;
+  color: #fff;
+}

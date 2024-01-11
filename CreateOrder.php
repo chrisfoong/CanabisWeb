@@ -16,8 +16,10 @@ if (isset($user_id)) {
         $product_amount = 1;
       }
 
-      if (!addOrder($conn, $producttb, $ordertb, $user_id, $product_id, $product_amount, $_POST['address'], $_POST['credit_card'], $_POST['expiry_date'], $_POST['cvv'])) {
-      } else {
+      if (!addOrder($conn, $producttb, $ordertb, $user_id, $product_id, $product_amount, $_POST['address'], $_POST['credit_card'], $_POST['expiry_date'], $_POST['cvv'], $_POST['name'])) {
+
+      
+      }else {
         $params = "?alert=Adding order failed.";
 
       }
