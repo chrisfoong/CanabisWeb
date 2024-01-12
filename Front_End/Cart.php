@@ -5,6 +5,48 @@ require_once('./utils/db_conn.php');
 
 $item_in_cart_count = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
 $total = 0;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){$params = "";
+
+$user_id = $_SESSION['id'];
+
+if (isset($user_id)) {
+  if (isset($_SESSION['cart'])) {
+    foreach ($_SESSION['cart'] as $cart_item) {
+      $product_id = $cart_item['product_id'];
+      if (isset($cart_item['product_quantity'])) {
+        $product_amount = $cart_item['product_quantity'];
+      } else {
+        $product_amount = 1;
+      }
+
+      if (!addOrder($conn, $producttb, $ordertb, $user_id, $product_id, $product_amount, $_POST['address'], $_POST['credit_card'], $_POST['expiry_date'], $_POST['cvv'], $_POST['name'])) {
+
+      
+      }else {
+        $params = "?alert=Adding order failed.";
+
+      }
+    }
+    unset($_SESSION['cart']);
+    $params = "?alert=orders added successfully!";
+  } else {
+    $params = "?alert=Failed: Cart is empty.";
+  }
+} else {
+  $params = "?alert=Please login first.";
+}
+
+$referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+
+// Remove query parameters from the URL
+$referer_parts = parse_url($referer);
+$referer_url = $referer_parts['scheme'] . '://' . $referer_parts['host'] . $referer_parts['path'] . $params;
+
+// Redirect to the modified referring URL
+//header("Location: $referer_url");
+}
+
 ?>
 
 <!doctype html>
@@ -26,7 +68,7 @@ $total = 0;
     ?>
 
     <div class="container">
-      <form action="CreateOrder.php" method="POST" class="information">
+      <form action="Cart.php" method="POST" class="information">
         <h1>Checkout</h1>
         <div>
           <label for="name">Full Name:</label>

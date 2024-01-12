@@ -15,10 +15,10 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 	$pass = validate($_POST['password']);
 
 	if (empty($uname)) {
-		header("Location: LoginPage.php?error=User Name is required");
+		header("Location: loginPage.php?error=User Name is required");
 	    exit();
 	}else if(empty($pass)){
-        header("Location: LoginPage.php?error=Password is required");
+        header("Location: loginPage.php?error=Password is required");
 	    exit();
 	}else{
 		// hashing the password
@@ -35,19 +35,19 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
             	$_SESSION['user_name'] = $row['user_name'];
             	$_SESSION['name'] = $row['name'];
             	$_SESSION['id'] = $row['id'];
-            	header("Location: Browse.php");
+            	header("Location: browse.php");
 		        exit();
             }else{
-				header("Location: LoginPage.php?error=Incorect User name or password");
+				header("Location: loginPage.php?error=Incorect User name or password");
 		        exit();
 			}
 		}else{
-			header("Location: LoginPage.php?error=Incorect User name or password");
+			header("Location: loginPage.php?error=Incorect User name or password");
 	        exit();
 		}
 	}
 	
 }else{
-	header("Location: Index.php");
+	header("Location: index.php");
 	exit();
 }

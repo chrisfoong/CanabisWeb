@@ -58,7 +58,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])
            $sql2 = "INSERT INTO $usertb(user_name, password, name) VALUES('$uname', '$pass', '$name')";
            $result2 = mysqli_query($conn, $sql2);
            if ($result2) {
-           	 header("Location: LoginPage.php?success=Your account has been created successfully.");
+           	 header("Location: loginPage.php?success=Your account has been created successfully.");
 	         exit();
            }else {
 	           	header("Location: signupPage.php?error=unknown error occurred.&$user_data");

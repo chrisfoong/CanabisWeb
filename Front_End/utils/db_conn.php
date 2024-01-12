@@ -111,21 +111,30 @@ function addOrder($conn, $producttb, $ordertb, $user_id, $product_id, $product_a
   $add_order_sql = "INSERT INTO $ordertb (user_id, product_id, product_price, product_amount, shipping_address) VALUES ('$user_id', '$product_id', '$product_price', '$product_amount', '$user_address')";
 
   if (mysqli_query($conn, $add_order_sql)) {
-    $email = new \SendGrid\Mail\Mail();
-    $email->setFrom("keshocanabis@gmail.com");
-    $email->setSubject("Customer's Orders");
-    $email->addTo("chrisfoong010@gmail.com");
-    $email->addContent("text/plain", "$name ('ID'$user_id) just ordered product '$product_name'\nAmount: $product_amount\n Address: $user_address");
-    $sendgrid = new \SendGrid('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');
-
-    try {
-      $response = $sendgrid->send($email);
-      print $response->statusCode() . "\n";
-      print_r($response->headers());
-      print $response->body() . "\n";
-    } catch (Exception $e) {
-        echo 'Caught exception: '. $e->getMessage() ."\n"; 
-      }
+    $emailData = array(
+      'subject' => 'Orders from customers!!',
+      'text' => "$name (ID $user_id) just ordered product $product_name \nAmount: $product_amount\n Address: $user_address",
+  );
+  
+  // Define the server endpoint
+  $serverUrl = 'http://localhost:3000/send-email';
+  
+  // Create HTTP headers
+  $options = array(
+      'http' => array(
+          'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+          'method' => 'POST',
+          'content' => json_encode($emailData)
+      )
+  );
+  
+  $context = stream_context_create($options);
+  
+  // Make the POST request
+  $response = file_get_contents($serverUrl, false, $context);
+  
+  // Output the response
+  echo $response;
     return true;
   } else {
     return false;
