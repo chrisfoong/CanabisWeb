@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-sgMail.setApiKey('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');
+sgMail.setApiKey('API_KEY');
 
 app.post('/send-email', (req, res) => {
   const {subject, text} = req.body;
