@@ -1,10 +1,12 @@
+<!doctype html>
+<html>
+
+<head>
 <?php
 session_start();
 require_once('./components/productInCart.php');
 require_once('./utils/db_conn.php');
 
-$item_in_cart_count = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
-$total = 0;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){$params = "";
 
@@ -24,35 +26,24 @@ if (isset($user_id)) {
 
       
       }else {
-        $params = "?alert=Adding order failed.";
+        $params = "Adding order failed.";
 
       }
     }
     unset($_SESSION['cart']);
-    $params = "?alert=orders added successfully!";
+    $params = "orders added successfully!";
   } else {
-    $params = "?alert=Failed: Cart is empty.";
+    $params = "Failed: Cart is empty.";
   }
 } else {
-  $params = "?alert=Please login first.";
+  $params = "Please login first.";
 }
 
-$referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
-
-// Remove query parameters from the URL
-$referer_parts = parse_url($referer);
-$referer_url = $referer_parts['scheme'] . '://' . $referer_parts['host'] . $referer_parts['path'] . $params;
-
-// Redirect to the modified referring URL
-//header("Location: $referer_url");
+echo "<script>alert('$params')</script>";
 }
-
+$item_in_cart_count = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
+$total = 0;
 ?>
-
-<!doctype html>
-<html>
-
-<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>KenshoCannabis</title>
@@ -68,7 +59,7 @@ $referer_url = $referer_parts['scheme'] . '://' . $referer_parts['host'] . $refe
     ?>
 
     <div class="container">
-      <form action="Cart.php" method="POST" class="information">
+      <form method="POST" class="information">
         <h1>Checkout</h1>
         <div>
           <label for="name">Full Name:</label>

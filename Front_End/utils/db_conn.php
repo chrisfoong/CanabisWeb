@@ -1,8 +1,8 @@
 <?php
 require 'vendor/autoload.php';
 $sname = "localhost";
-$uname = "root";
-$password = "";
+$uname = "id21408595_canabis_user";
+$password = "KenshoCanabis!1";
 
 $db_name = "id21408595_kenshocanabis";
 
@@ -108,33 +108,22 @@ function addOrder($conn, $producttb, $ordertb, $user_id, $product_id, $product_a
     return false;
   }
 
-  $add_order_sql = "INSERT INTO $ordertb (user_id, product_id, product_price, product_amount, shipping_address) VALUES ('$user_id', '$product_id', '$product_price', '$product_amount', '$user_address')";
+  $address = mysqli_real_escape_string($conn,$user_address);
+  $add_order_sql =  "INSERT INTO $ordertb (user_id, product_id, product_price, product_amount, shipping_address) VALUES ('$user_id', '$product_id', '$product_price', '$product_amount', '$address')";
 
   if (mysqli_query($conn, $add_order_sql)) {
-    $emailData = array(
-      'subject' => 'Orders from customers!!',
-      'text' => "$name (ID $user_id) just ordered product $product_name \nAmount: $product_amount\n Address: $user_address",
-  );
-  
-  // Define the server endpoint
-  $serverUrl = 'http://localhost:3000/send-email';
-  
-  // Create HTTP headers
-  $options = array(
-      'http' => array(
-          'header' => "Content-type: application/x-www-form-urlencoded\r\n",
-          'method' => 'POST',
-          'content' => json_encode($emailData)
-      )
-  );
-  
-  $context = stream_context_create($options);
-  
-  // Make the POST request
-  $response = file_get_contents($serverUrl, false, $context);
-  
-  // Output the response
-  echo $response;
+    $email = new \SendGrid\Mail\Mail();
+    $email->setFrom("keshocanabis@gmail.com");
+    $email->setSubject("Customer's Orders");
+    $email->addTo("chrisfoong010@gmail.com");
+    $email->addContent("text/plain", "$name ('ID'$user_id) just ordered product '$product_name'\nAmount: $product_amount\n Address: $user_address");
+    $sendgrid = new \SendGrid('API_KEY');
+
+    try {
+    $sendgrid->send($email);
+    } catch (Exception $e) {
+        echo 'Caught exception: '. $e->getMessage() ."\n"; 
+      }
     return true;
   } else {
     return false;

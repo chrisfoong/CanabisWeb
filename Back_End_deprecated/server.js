@@ -27,8 +27,22 @@ app.post('/send-email', (req, res) => {
     })
     .catch((error) => {
       console.error(error);
+    
+      if (error.response && error.response.body && error.response.body.errors) {
+        // Iterate through the array of errors
+        error.response.body.errors.forEach((errorItem) => {
+          // Log error details
+          console.error(`Error: ${errorItem.message}`);
+          // You can also log other properties like 'field' if available
+          if (errorItem.field) {
+            console.error(`Field: ${errorItem.field}`);
+          }
+        });
+      }
+    
       res.status(500).send('Error sending email');
     });
+    
 });
 
 app.listen(port, () => {
